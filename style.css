@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #0e0e0e;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2vw;
+}
+
+/* ✅ Outer border that floats & resizes */
+.border-wrapper {
+  width: 100%;
+  height: 100%;
+  max-width: 95vw;
+  max-height: 95vh;
+  border: 10px solid #000000;
+  border-radius: 30px;
+  background-color: #0e0e0e;
+  box-shadow: 0 0 60px rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10px;
+}
+
+/* 🎯 Spotlight effect */
+.spotlight {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 🧊 Card perspective wrapper */
+.scene {
+  perspective: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🪪 The 3D card */
+.card3d {
+  width: 90%;
+  max-width: 400px;
+  aspect-ratio: 16 / 9;
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+  border-radius: 20px;
+  position: relative;
+}
+
+.card-face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 20px 50px rgba(255,255,255,0.1),
+              0 8px 20px rgba(255,255,255,0.05);
+}
+
+.card-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.front {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+/* 📱 Fully Responsive Layouts */
+@media (max-width: 1024px) {
+  .card3d {
+    max-width: 350px;
+  }
+
+  .border-wrapper {
+    max-width: 92vw;
+    max-height: 92vh;
+    border-width: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card3d {
+    max-width: 300px;
+  }
+
+  .border-wrapper {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-width: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card3d {
+    max-width: 270px;
+  }
+
+  .border-wrapper {
+    max-width: 88vw;
+    max-height: 88vh;
+    border-width: 4px;
+    border-radius: 20px;
+  }
+
+  .spotlight {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+#touch-hint {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  animation: fadeLoop 2.5s infinite;
+  z-index: 999;
+  pointer-events: none;
+}
+
+#touch-hint img {
+  width: 60px;
+  height: auto;
+  animation: swipeMove 1.2s ease-in-out infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes swipeMove {
+  0% { transform: translateX(0); opacity: 1; }
+  50% { transform: translateX(40px); opacity: 0.5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeLoop {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+#touch-hint.fade-out {
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+
+
+#touch-hint {
+  background-color: #363535;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  font-weight: 500;
+  z-index: 999;
+  pointer-events: none;
+  animation: fadeLoop 2.5s infinite;
+}
+
+#touch-hint img {
+  width: 60px;
+  height: auto;
+  animation: swipeMove 1.2s ease-in-out infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes swipeMove {
+  0% { transform: translateX(0); opacity: 1; }
+  50% { transform: translateX(40px); opacity: 0.5; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeLoop {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.4; }
+}
+
+#touch-hint.fade-out {
+  animation: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+
